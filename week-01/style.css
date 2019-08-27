@@ -1,0 +1,14 @@
+ion-toolbar{
+    --ion-background-color: #3780FF;
+    padding: 0px !important;
+}
+
+ion-title{
+    color: white; 
+    text-align: center
+}
+
+ion-card-title{
+    font-weight: 500;
+    font-size: 30px;
+}
