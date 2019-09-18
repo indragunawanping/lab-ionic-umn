@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ place.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-img [src]="place.imgUrl" class="ion-margin-top"></ion-img>
+  <p>{{ place.description }}</p>
+  <ion-card-subtitle>{{ place.price }}</ion-card-subtitle>
+  <ion-button expand="full" (click)="onBookPlace()">Book</ion-button>
+</ion-content>
