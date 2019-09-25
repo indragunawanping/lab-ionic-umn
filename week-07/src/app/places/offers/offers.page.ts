@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { model_Places } from '../places.model';
 import { PlacesService } from '../places.service';
-import { ToastController } from '@ionic/angular';
+import { Place } from '../place.model';
+import { IonItemSliding } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,16 +10,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./offers.page.scss'],
 })
 export class OffersPage implements OnInit {
-  arr_Places: model_Places[];
+  offers: Place[];
 
-  constructor(private router: Router, private service_Places: PlacesService) { }
+  constructor(private placesService: PlacesService, private router: Router) { }
 
   ngOnInit() {
-    this.arr_Places = this.service_Places.getAllPlaces();
+    this.offers = this.placesService.places;
   }
 
-  deleteBookings(bookingsId: string){
-    this.service_Places.service_deletePlace(bookingsId);
-    this.arr_Places = this.service_Places.getAllPlaces();
+  onEdit(offerId: string, slidingItem: IonItemSliding) {
+    slidingItem.close();
+    this.router.navigate(['/', 'places', 'tabs', 'offers', 'edit', offerId]);
+    console.log('Editing item', offerId);
   }
+
 }

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController, AlertController } from '@ionic/angular';
 import { PlacesService } from '../places.service';
-import { model_Places } from '../places.model';
-
+import { Place } from '../place.model';
+import { SegmentChangeEventDetail } from '@ionic/core';
 
 @Component({
   selector: 'app-discover',
@@ -10,32 +9,18 @@ import { model_Places } from '../places.model';
   styleUrls: ['./discover.page.scss'],
 })
 export class DiscoverPage implements OnInit {
-  arr_Places: model_Places[];
+  loadedPlaces: Place[];
+  listedLoadedPlaces: Place[];
 
-  constructor(public alertController: AlertController, private service_Places: PlacesService) { }
+  constructor(private placesService: PlacesService) { }
 
   ngOnInit() {
-    this.arr_Places = this.service_Places.getAllPlaces();
-  }
-  
-  page_join(){
-    this.service_getAlert();
+    this.loadedPlaces = this.placesService.places;
+    this.listedLoadedPlaces = this.loadedPlaces.slice(1);
   }
 
-  async service_getAlert(){
-    const alert = await this.alertController.create({
-      header: 'Beneran Mau Join?',
-      buttons: [
-        {
-          text: 'YES',
-          // handler: () => this.recipesService.service_deleteRecipe(this.loadedRecipe.id)
-        },
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        }
-      ]
-    });
-    await alert.present();
+  onFilterUpdate(event: CustomEvent<SegmentChangeEventDetail>) {
+    console.log(event.detail);
   }
+
 }
