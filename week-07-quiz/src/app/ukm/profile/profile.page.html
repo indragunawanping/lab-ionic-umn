@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">UMN UKM</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-sm="8" offset-sm="2" text-center>
+            <ion-img style="height: 100px; width:100px; margin:auto !important; margin-top: 100px !important" src="https://image.flaticon.com/icons/svg/149/149995.svg"></ion-img>
+            <h2> Indra Gunawan </h2>
+            <h2> 00000013226 </h2>
+
+            <ion-list>
+              <ion-item-sliding *ngFor="let myU of myUkm" #slidingBooking>
+                <ion-item>
+                    <ion-label>
+                      <h5>{{ myU.title }}</h5>
+                      <h5>{{ myU.description }}</h5>
+                    </ion-label>
+                </ion-item>
+                <ion-item-options>
+                  <ion-item-option color="danger">
+                    <ion-icon name="trash" slot="icon-only" (click)="onCancelMyUkm(myU.id)"></ion-icon>
+                  </ion-item-option>
+                </ion-item-options>
+              </ion-item-sliding>
+            </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>
